@@ -104,3 +104,14 @@ export async function addReminder(userId: string, reminder: {
   if (error) throw error
   return data
 }
+
+export async function getVoiceEntries(userId: string) {
+  const { data, error } = await supabase
+    .from('voice_entries')
+    .select('*')
+    .eq('user_id', userId)
+    .order('date', { ascending: false })
+
+  if (error) throw error
+  return data
+}
